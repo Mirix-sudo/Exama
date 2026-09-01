@@ -1,15 +1,15 @@
 # Exama
 
-Ce projet a été mis en place à partir de zéro en clonant le dépôt, en créant un environnement virtuel, en installant Django, puis en générant la structure du projet et de l'application Django.
+Ce projet a Ã©tÃ© mis en place Ã  partir de zÃ©ro en clonant le dÃ©pÃ´t, en crÃ©ant un environnement virtuel, en installant Django, puis en gÃ©nÃ©rant la structure du projet et de l'application Django.
 
-## 1. Cloner le dépôt
+## 1. Cloner le dÃ©pÃ´t
 
 ```bash
-git clone <repository-url>
+git clone <https://github.com/Mirix-sudo/Exama/>
 cd Exama
 ```
 
-## 2. Créer et activer un environnement virtuel
+## 2. CrÃ©er et activer un environnement virtuel
 
 ```bash
 python -m venv env
@@ -27,15 +27,15 @@ Sous Windows :
 pip install django
 ```
 
-## 4. Créer le projet Django
+## 4. CrÃ©er le projet Django
 
-Depuis la racine du dépôt :
+Depuis la racine du dÃ©pÃ´t :
 
 ```bash
 django-admin startproject exama .
 ```
 
-Cela crée le projet Django principal avec la structure par défaut :
+Cela crÃ©e le projet Django principal avec la structure par dÃ©faut :
 
 ```text
 exama/
@@ -48,13 +48,13 @@ exama/
         asgi.py
 ```
 
-## 5. Créer l'application
+## 5. CrÃ©er l'application
 
 ```bash
 python manage.py startapp epreuves
 ```
 
-Cela a créé le dossier de l'application :
+Cela a crÃ©Ã© le dossier de l'application :
 
 ```text
 exama/
@@ -70,7 +70,7 @@ exama/
 
 ## 6. Enregistrer l'application dans le projet
 
-La nouvelle application a été ajoutée au fichier de configuration Django dans `exama/exama/settings.py` dans la liste `INSTALLED_APPS`.
+La nouvelle application a Ã©tÃ© ajoutÃ©e au fichier de configuration Django dans `exama/exama/settings.py` dans la liste `INSTALLED_APPS`.
 
 ```python
 INSTALLED_APPS = [
@@ -84,29 +84,29 @@ INSTALLED_APPS = [
 ]
 ```
 
-## 7. Générer le fichier des dépendances
+## 7. GÃ©nÃ©rer le fichier des dÃ©pendances
 
-Pour suivre les packages installés, les dépendances de l'environnement ont été exportées :
+Pour suivre les packages installÃ©s, les dÃ©pendances de l'environnement ont Ã©tÃ© exportÃ©es :
 
 ```bash
 pip freeze > requirements.txt
 ```
 
-## 8. Lancer le serveur de développement
+## 8. Lancer le serveur de dÃ©veloppement
 
-Pour vérifier que le projet fonctionne :
+Pour vÃ©rifier que le projet fonctionne :
 
 ```bash
 python manage.py migrate
 python manage.py runserver
 ```
 
-Ensuite, ouvrez l'URL locale de développement Django dans le navigateur :
+Ensuite, ouvrez l'URL locale de dÃ©veloppement Django dans le navigateur :
 
 ```text
 http://127.0.0.1:8000/
 ```
 
-## Résumé du projet
+## RÃ©sumÃ© du projet
 
-Le projet a été initialisé avec Django, un environnement virtuel a été configuré, le projet `exama` a été créé, et l'application `epreuves` a été ajoutée pour commencer le développement de l'application.
+Le projet a Ã©tÃ© initialisÃ© avec Django, un environnement virtuel a Ã©tÃ© configurÃ©, le projet `exama` a Ã©tÃ© crÃ©Ã©, et l'application `epreuves` a Ã©tÃ© ajoutÃ©e pour commencer le dÃ©veloppement de l'application.
