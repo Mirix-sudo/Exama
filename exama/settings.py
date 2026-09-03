@@ -55,11 +55,10 @@ ROOT_URLCONF = 'exama.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-<<<<<<< HEAD
-        'DIRS': [BASE_DIR/'templates'],
-=======
+    
+        
         'DIRS': [BASE_DIR / "templates"],
->>>>>>> 24ccae93a367a7d72f812128cf0fc56219a6320d
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

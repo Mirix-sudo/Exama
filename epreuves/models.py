@@ -1,6 +1,6 @@
 from django.db import models
+from django.utils import choices
 
-# Create your models here.
 
 
 class Epreuve(models.Model):
