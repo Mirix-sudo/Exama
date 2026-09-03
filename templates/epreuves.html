@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+Épreuves - Exama
+{% endblock %}
+
+{% block content %}
+
+<h1>Toutes les épreuves</h1>
+
+<!-- Filtres -->
+<form method="get">
+
+    <label>Matière :</label>
+    <select name="matiere">
+        <option value="">Toutes</option>
+        <option value="math">Mathématiques</option>
+        <option value="francais">Français</option>
+        <option value="physique">Physique</option>
+    </select>
+
+    <label>Année :</label>
+    <select name="annee">
+        <option value="">Toutes</option>
+        <option value="2025">2025</option>
+        <option value="2024">2024</option>
+        <option value="2023">2023</option>
+    </select>
+
+    <button class="filtrer" type="submit">Filtrer</button>
+
+</form>
+
+
+<!-- Exemple d'épreuve -->
+<div>
+    <h2>Mathématiques - Bac 2025</h2>
+
+    <p>Matière : Mathématiques</p>
+    <p>Année : 2025</p>
+    <p>Type : BAC</p>
+
+    <a href="/epreuves/1/">
+        Voir l'épreuve
+    </a>
+</div>
+
+
+<div>
+    <h2>Physique - Bac 2024</h2>
+
+    <p>Matière : Physique</p>
+    <p>Année : 2024</p>
+    <p>Type : BAC</p>
+
+    <a href="/epreuves/2/">
+        Voir l'épreuve
+    </a>
+</div>
+
+{% endblock %}

@@ -1,15 +1,50 @@
 {% extends "base.html" %}
-{% load static %}
 
-{% block title %}Banque d'Epreuve{% endblock title %}
+{% block title %}
+Accueil - Exama
+{% endblock %}
 
-{% block head %}
-  <link rel="stylesheet" href="css/style.css">
-{% endblock head %}
+{% block content %}
 
-{% block body %}
+<section>
+    <h1>Bienvenue sur Exama</h1>
 
-<header class="header"> <div class="container header-content"> <a href="home.html" class="logo"> <span class="logo-icon">📚</span> <span>Banque d'Épreuve</span> </a> <nav class="nav"> <a href="home.html" class="nav-link active">Accueil</a> <a href="epreuves.html" class="nav-link">Épreuves</a> </nav> <div class="header-actions"> <a href="#" class="btn btn-outline">Connexion</a> <a href="#" class="btn btn-primary">Créer un compte</a> </div> </div> </header>
+    <p>
+        Trouvez facilement des épreuves pour vous préparer à vos examens.
+    </p>
 
-<main> <section class="hero"> <div class="container hero-content"> <div class="hero-text"> <span class="badge"> FAST & ENS </span> <h1> Toutes vos épreuves <span>au même endroit.</span> </h1> <p> Recherchez, consultez et téléchargez facilement les anciennes épreuves de la FAST et de l'ENS. </p> <form action="epreuves.html" method="get" class="search-form"> <div class="search-box"> <span class="search-icon">🔎</span> <input type="search" name="q" placeholder="Rechercher une matière, une épreuve..." aria-label="Rechercher une épreuve" > <button type="submit" class="btn btn-primary"> Rechercher </button> </div> </form> <div class="popular-searches"> <span>Recherches populaires :</span> <a href="epreuves.html?q=mathematiques">Mathématiques</a> <a href="epreuves.html?q=physique">Physique</a> <a href="epreuves.html?q=informatique">Informatique</a> </div> </div> <!-- Carte visuelle --> <div class="hero-card-wrapper"> <div class="hero-card"> <div class="hero-card-top"> <span class="pdf-icon">PDF</span> <span class="verified"> ✓ Disponible </span> </div> <div class="hero-card-body"> <span class="university-label"> RAPIDE </span> <h3> Mathématiques </h3> <p> Licence 1 · Semestre 1 · 2025 </p> <div class="hero-card-info"> <span>📄 4 pages</span> <span>⏱ 2 heures</span> </div> </div> </div> </div> </div> </section> <!-- ================= STATISTIQUES ================= --> <section class="stats-section"> <div class="container stats-grid"> <div class="stat"> <strong>500+</strong> <span>Épreuves disponibles</span> </div> <div class="stat"> <strong>2</strong> <span>Universités</span> </div> <div class="stat"> <strong>50+</strong> <span>Matières</span> </div> <div class="stat"> <strong>1000+</strong> <span>Étudiants</span> </div> </div> </section> <!-- ================= UNIVERSITÉS ================= --> <section class="section"> <div class="container"> <div class="section-heading"> <div> <span class="section-label"> NOS UNIVERSITÉS </span> <h2> Choisissez votre établissement </h2> </div> <a href="epreuves.html" class="text-link"> Voir toutes les épreuves → </a> </div> <div class="universities-grid"> <a href="epreuves.html?universite=FAST" class="university-card"> <div class="university-logo fast-logo"> RAPIDE </div> <div class="university-info"> <h3>RAPIDE</h3> <p> Faculté des Sciences et Techniques </p> <span> Voir les épreuves → </span> </div> </a> <a href="epreuves.html?universite=ENS" class="university-card"> <div class="university-logo ens-logo"> ENS </div> <div class="university-info"> <h3>ENS</h3> <p> École Normale Supérieure </p> <span> Voir les épreuves → </span> </div> </a> </div> </div> </section> <!-- ================= ÉPREUVES RÉCENTES ================= --> <section class="section section-light"> <div class="container"> <div class="section-heading"> <div> <span class="section-label"> NOUVEAUTÉS </span> <h2> Épreuves récentes </h2> </div> <a href="epreuves.html" class="text-link"> Tout voir → </a> </div> <div class="exam-grid"> <!-- Épreuve 1 --> <article <div class="exam-card"> <div class="exam-card-top"> <span class="university-tag fast-tag"> RAPIDE </span> <span class="year-tag"> 2025 </span> </div> <h3> Mathématiques </h3> <p class="exam-description"> Licence 1 · Semestre 1 </p> <div class="exam-meta"> <span>📄 PDF</span> <span>2 heures</span> </div> <a href="epreuves_details.html" class="exam-link"> Consulter l'épreuve → </a> </article> <!-- Épreuve 2 --> <article class="exam-card"> <div class="exam-card-top"> <span class="university-tag ens-tag"> ENS </span> <span class="year-tag"> 2025 </span> </div> <h3> Physique </h3> <p class="exam-description"> Licence 1 · Semestre 2 </p> <div class="exam-meta"> <span>📄 PDF</span> <span>2 heures</span> </div> <a href="epreuves_details.html" class="exam-link"> Consulter l'épreuve → </a> </article> <!-- Épreuve 3 --> <article class="exam-card"> <div class="exam-card-top"> <span class="university-tag fast-tag"> FAST </span> <span class="year-tag"> 2024 </span> </div> <h3> Informatique </h3> <p class="exam-description"> Licence 2 · Semestre 1 </p> <div class="exam-meta"> <span>📄 PDF</span> <span>2 heures</span> </div> <a href="epreuves_details.html" class="exam-link"> Consulter l'épreuve → </a> </article> </div> </div> </section> <!-- ================= CTA ================= --> <section class="cta-section"> <div class="container cta-content"> <div> <span class="section-label"> BESOIN D'UNE ÉPREUVE ? </span> <h2> Trouvez rapidement ce que vous cherchez. </h2> <p> Parcourez notre collection d'épreuves et préparez efficacement vos examens. </p> </div> <a href="epreuves.html" class="btn btn-white"> Explorer les épreuves </a> </div> </section> </main> <!-- ================ FOOTER ================= --> <footer class="footer"> <div class="container footer-content"> <div class="footer-brand"> <a href="home.html" class="logo footer-logo"> <span class="logo-icon">📚</span> <span>Banque d'Épreuve</span> </a> <p> Une plateforme simple pour retrouver vos anciennes épreuves universitaires. </p> </div> <div class="footer-links"> <div> <h4>Navigation</h4> <a href="home.html">Accueil</a> <a href="epreuves.html">Épreuves</a> </div> <div> <h4>Universités</h4> <a href="epreuves.html?universite=FAST">RAPIDE</a> <a href="epreuves.html?universite=ENS">ENS</a> </div> </div> </div> <div class="footer-bottom"> <div class="container"> <p> © 2026 Banque d'Épreuve. Tous droits réservés. </p> </div> </div> </footer> </body> </html> ``` --- # 2. `epreuves.htmhtml" class="btn btn-white"> Explorer les épreuves </a> </div> </section> </main> <!-- ================ FOOTER ================= --> <footer class="footer"> <div class="container footer-content"> <div class="footer-brand"> <a href="home.html" class="logo footer-logo"> <span class="logo-icon">📚</span> <span>Banque d'Épreuve</span> </a> <p> Une plateforme simple pour retrouver vos anciennes épreuves universitaires </p> </div> <div class="footer-links"> <div> <h4>Navigation</h4> <a. href="home.html">Accueil</a> <a href="epreuves.html">Épreuves</a> </div> <div> <h4>Universités</h4> <a href="epreuves.html?universite=FAST">RAPIDE</a> <a href="epreuves.html?universite=ENS">ENS</a> </div> </div> </div> <div class="footer-bottom"> <div class="container"> <p> © 2026 Banque d'Épreuve. Tous droits réservés. </p> </div> </div> </footer> </body> </html> ``` --- # 2. `epreuves.htmhtml" class="btn btn-white"> Explorer les épreuves </a> </div> </section> </main> <!-- ================ FOOTER ================= --> <footer class="footer"> <div class="container footer-content"> <div class="footer-brand"> <a href="home.html" class="logo footer-logo"> <span class="logo-icon">📚</span> <span>Banque d'Épreuve</span> </a> <p> Une plateforme simple pour retrouver vos anciennes épreuves universitaires </p> </div> <div class="footer-links"> <div> <h4>Navigation</h4> <a. href="home.html">Accueil</a> <a href="epreuves.html">Épreuves</a> </div> <div> <h4>Universités</h4> <a href="epreuves.html?universite=FAST">RAPIDE</a> <a href="epreuves.html?universite=ENS">ENS</a> </div> </div> </div> <div class="footer-bottom"> <div class="container"> <p> © 2026 Banque d'Épreuve. Tous droits réservés. </p> </div> </div> </footer> </body> </html> ``` --- # 2. `epreuves.htmhtml">Épreuves</a> </div> <div> <h4>Universités</h4> <a href="epreuves.html?universite=FAST">FAST</a> <a href="epreuves.html?universite=ENS">ENS</a> </div> </div> </div> <div class="footer-bottom"> <div class="container"> <p> © 2026 Banque d'Épreuve. Tous droits réservés. </p> </div> </div> </footer> </body> </html> ``` --- # 2. `epreuves.htm.html">Épreuves</a> </div> <div> <h4>Universités</h4> <a href="epreuves.html?universite=FAST">FAST</a> <a href="epreuves.html?universite=ENS">ENS</a> </div> </div> </div> <div class="footer-bottom"> <div class="container"> <p> © 2026 Banque d'Épreuve. Tous droits réservés. </p> </div> </div> </footer>
-{% endblock body %}
+    <a href="/epreuves/">
+        Voir toutes les épreuves
+    </a>
+</section>
+
+
+<section>
+    <h2>Matières</h2>
+
+    <div>
+        <button>Mathématiques</button>
+        <button>Français</button>
+        <button>Physique</button>
+        <button>Anglais</button>
+    </div>
+</section>
+
+
+<section>
+    <h2>Épreuves récentes</h2>
+
+    <div>
+        <h3>Mathématiques - Bac 2025</h3>
+        <p>Épreuve de mathématiques du BAC.</p>
+        <a href="/epreuves/1/">Voir l'épreuve</a>
+    </div>
+
+    <div>
+        <h3>Physique - Bac 2024</h3>
+        <p>Épreuve de physique du BAC.</p>
+        <a href="/epreuves/2/">Voir l'épreuve</a>
+    </div>
+</section>
+
+{% endblock %}

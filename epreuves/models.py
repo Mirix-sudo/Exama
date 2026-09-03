@@ -1,9 +1,14 @@
 from django.db import models
+from django.utils import choices
 
 # Create your models here.
 
 
 class Epreuve(models.Model):
+    ENTITES = [
+       ("FAST", "FAST"),
+       ("FST", "FST"),
+    ]
     NIVEAUX = [
         ('1', '1ère année'),
         ('2', '2ème année'),
@@ -13,8 +18,7 @@ class Epreuve(models.Model):
         ('CC', 'Contrôle Continu'),
         ('EX', 'Examen Final'),
     ]
-    titre = models.CharField(max_length=100)
-    matiere = models.CharField(max_length=100)
+    entite = models.CharField(max_length=100, default=ENTITES[0][0], choices=ENTITES)
     niveau = models.CharField(max_length=100, choices=NIVEAUX)
     annee = models.IntegerField()
     type_examen = models.CharField(max_length=100, choices=TYPES_EXAMEN)
@@ -24,7 +28,7 @@ class Epreuve(models.Model):
     
 
     def __str__(self):
-        return self.titre
+        return f"{self.entite} - {self.matiere} - {self.niveau} - {self.annee} - {self.type_examen}"
 
 class Matiere(models.Model):
     nom = models.CharField(max_length=100)

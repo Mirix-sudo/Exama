@@ -1,14 +1,56 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
+
+    <!-- Pour les téléphones -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}
-      
-    {% endblock title %}</title>
-    {% block head %}{% endblock head %}
+
+    <title>{% block title %}Exama{% endblock %}</title>
+
+    <!-- CSS global -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
-    {% block body %}{% endblock body %}
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <a href="/">Exama</a>
+        </div>
+
+        <div class="menu">
+            <a href="/">Accueil</a>
+            <a href="/epreuves/">Épreuves</a>
+            <a href="/recherche/">Recherche</a>
+        </div>
+
+        <!-- Barre de recherche simple -->
+        <form action="/recherche/" method="get">
+            <input
+                type="text"
+                name="q"
+                placeholder="Rechercher une épreuve..."
+            >
+            <button type="submit">Rechercher</button>
+        </form>
+    </nav>
+
+
+    <!-- Contenu de chaque page -->
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Exama - Banque d'épreuves</p>
+    </footer>
+
 </body>
 </html>
