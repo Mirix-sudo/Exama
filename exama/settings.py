@@ -55,9 +55,6 @@ ROOT_URLCONF = 'exama.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-
-
-
         'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -71,7 +68,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'exama.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/6.1/ref/settings/#databases

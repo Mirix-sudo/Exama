@@ -1,82 +1,43 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-{{ epreuve.matiere }} - Exama
+Détail de l'épreuve - Exama
 {% endblock title %}
-
 
 {% block content %}
 
-<div class="detail-page">
+<section class="modifier">
+    
+    <h1>{{ epreuve.matiere }}</h1>
 
-    <a href="{% url 'epreuves' %}" class="back-link">
-        ← Retour aux épreuves
+    <p>
+        <strong>Matière :</strong> {{ epreuve.matiere }}
+    </p>
+
+    <p>
+        <strong>Année :</strong> {{ epreuve.annee }}
+    </p>
+
+    <p>
+        <strong>Niveau :</strong> {{ epreuve.get_niveau_display }}
+    </p>
+
+    <p>
+        Épreuve {{ epreuve.get_session_display }} de {{ epreuve.entite }}.
+    </p>
+
+    <br>
+
+    <a href="{{ epreuve.fichier.url }}" target="_blank" rel="noopener">
+        Télécharger le PDF
     </a>
+</section>
 
+<br><br>
 
-    <article class="detail-card">
-
-        <div class="detail-header">
-
-            <span class="exam-badge">
-                {{ epreuve.annee }}
-            </span>
-
-            <h1>
-                {{ epreuve.matiere }}
-            </h1>
-
-            <p>
-                Épreuve {{ epreuve.get_session_display }}
-                de {{ epreuve.entite }}
-            </p>
-
-        </div>
-
-
-        <div class="detail-info">
-
-            <div>
-                <span>Matière</span>
-                <strong>{{ epreuve.matiere }}</strong>
-            </div>
-
-            <div>
-                <span>Année</span>
-                <strong>{{ epreuve.annee }}</strong>
-            </div>
-
-            <div>
-                <span>Niveau</span>
-                <strong>{{ epreuve.get_niveau_display }}</strong>
-            </div>
-
-            <div>
-                <span>Session</span>
-                <strong>{{ epreuve.get_session_display }}</strong>
-            </div>
-
-        </div>
-
-
-        <div class="download-area">
-
-            <p>
-                Cette épreuve est disponible au format PDF.
-            </p>
-
-            <a
-                href="{{ epreuve.fichier.url }}"
-                download
-                class="download-button"
-            >
-                Télécharger le PDF
-            </a>
-
-        </div>
-
-    </article>
-
-</div>
+<a href="{% url 'epreuves' %}">
+    ← Retour aux épreuves
+</a>
 
 {% endblock content %}
