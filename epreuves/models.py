@@ -6,28 +6,28 @@ from django.utils import choices
 class Epreuve(models.Model):
     ENTITES = [
        ("FAST", "FAST"),
-       ("FST", "FST"),
+       ("ENS", "ENS"),
     ]
     NIVEAUX = [
         ('1', '1ère année'),
         ('2', '2ème année'),
         ('3', '3ème année'),
     ]
-    TYPES_EXAMEN = [
-        ('CC', 'Contrôle Continu'),
-        ('EX', 'Examen Final'),
+    SESSION = [
+        ('Examen', 'Examen Final'),
+        ('Rattrapage', 'Rattrapage'),
     ]
     entite = models.CharField(max_length=100, default=ENTITES[0][0], choices=ENTITES)
-    niveau = models.CharField(max_length=100, choices=NIVEAUX)
+    niveau = models.CharField(max_length=100, default="Choisissez votre niveau", choices=NIVEAUX)
     annee = models.IntegerField()
-    type_examen = models.CharField(max_length=100, choices=TYPES_EXAMEN)
+    session = models.CharField(max_length=100, default="Quel est la session?" ,choices=SESSION)
     fichier = models.FileField(upload_to='epreuves/')
-    matiere = models.ForeignKey('Matiere', on_delete=models.PROTECT)
+    matiere = models.ForeignKey('Matiere', on_delete=models.CASCADE, related_name='epreuves')
     date_ajout = models.DateTimeField(auto_now_add=True)
     
 
     def __str__(self):
-        return f"{self.entite} - {self.matiere} - {self.niveau} - {self.annee} - {self.type_examen}"
+        return f"{self.entite} - {self.matiere} - {self.niveau} - {self.annee} - {self.session}"
 
 class Matiere(models.Model):
     nom = models.CharField(max_length=100)
