@@ -565,8 +565,20 @@ background-color: #1d4ed8;
 .detail-actions { padding-top: 10px; }
 .download-button { padding: 13px 20px; background-color: #16a34a; color: white; }
 .download-button:hover { background-color: #15803d; color: white; }
-footer { padding: 30px 20px; background-color: #111827; text-align: center; }
-footer p { margin: 0; color: #cbd5e1; font-size: 14px; }
+footer {
+    margin-top: 40px;
+    padding: 28px 20px;
+    border-top: 1px solid #1e3a5f;
+    background-color: #172033;
+    text-align: center;
+}
+
+footer p {
+    max-width: 1100px;
+    margin: 0 auto;
+    color: #cbd5e1;
+    font-size: 14px;
+}
 
 @media (max-width: 900px) {
     .subjects-grid { grid-template-columns: repeat(3, 1fr); }
@@ -598,4 +610,5 @@ footer p { margin: 0; color: #cbd5e1; font-size: 14px; }
     .search-form { flex-direction: column; }
     .search-form input, .search-form button { width: 100%; }
     .hero h1 { font-size: 29px; }
+    footer { margin-top: 30px; padding: 24px 16px; }
 }
