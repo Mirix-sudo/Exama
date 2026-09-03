@@ -1,51 +1,135 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block title %}
 Accueil - Exama
 {% endblock title %}
 
+
 {% block content %}
 
-<section>
-    <h1>Bienvenue sur Exama</h1>
+<section class="hero">
 
-    <p>
-        Trouvez facilement des épreuves pour vous préparer à vos examens.
-    </p>
+    <div class="hero-content">
 
-    <a href="/epreuves/">
-        Voir toutes les épreuves
-    </a>
+        <p class="hero-label">
+            BANQUE D'ÉPREUVES
+        </p>
+
+        <h1>
+            Préparez vos examens<br>
+            avec <span>Exama</span>
+        </h1>
+
+        <p class="hero-description">
+            Retrouvez facilement des épreuves, exercices et anciens examens
+            pour mieux vous préparer.
+        </p>
+
+        <a href="{% url 'epreuves' %}" class="primary-button">
+            Explorer les épreuves
+        </a>
+
+    </div>
+
 </section>
 
 
-<section>
-    <h2>Matières</h2>
+<section class="subjects-section">
 
-    <div> 
-        <button>Topologie de R</button>
-        <button>Algèbres</button>
-        <button>Mécaniques</button>
-        <button>Fonctions en R</button>
-        <button>Anglais Scientifiques</button>
+    <div class="section-header">
+        <div>
+            <p class="section-label">EXPLORER</p>
+            <h2>Les matières</h2>
+        </div>
     </div>
+
+    <div class="subjects-grid">
+
+        <a href="{% url 'epreuves' %}" class="subject-card">
+            <span>01</span>
+            <h3>Topologie de R</h3>
+        </a>
+
+        <a href="{% url 'epreuves' %}" class="subject-card">
+            <span>02</span>
+            <h3>Algèbres</h3>
+        </a>
+
+        <a href="{% url 'epreuves' %}" class="subject-card">
+            <span>03</span>
+            <h3>Mécaniques</h3>
+        </a>
+
+        <a href="{% url 'epreuves' %}" class="subject-card">
+            <span>04</span>
+            <h3>Fonctions en R</h3>
+        </a>
+
+        <a href="{% url 'epreuves' %}" class="subject-card">
+            <span>05</span>
+            <h3>Anglais scientifique</h3>
+        </a>
+
+    </div>
+
 </section>
 
 
-<section>
-    <h2>Épreuves récentes</h2>
+<section class="recent-section">
 
-    <div>
-        <h3>Algèbres</h3>
-        <p>Épreuve de mathématiques de 2026.</p>
-        <a href="/epreuves/1/">Voir l'épreuve</a>
+    <div class="section-header">
+
+        <div>
+            <p class="section-label">NOUVEAUTÉS</p>
+            <h2>Épreuves récentes</h2>
+        </div>
+
+        <a href="{% url 'epreuves' %}">
+            Voir toutes →
+        </a>
+
     </div>
 
-    <div>
-        <h3>Anglais Scientifiques</h3>
-        <p>Épreuve d'anglais scientifique de 2026.</p>
-        <a href="/epreuves/2/">Voir l'épreuve</a>
+
+    <div class="exam-grid">
+
+        {% for epreuve in epreuves_recentes %}
+
+            <article class="exam-card">
+
+                <div class="exam-card-top">
+                    <span class="exam-badge">
+                        {{ epreuve.annee }}
+                    </span>
+                </div>
+
+                <h3>
+                    {{ epreuve.matiere }}
+                </h3>
+
+                <p>
+                    {{ epreuve.get_niveau_display }}
+                    ·
+                    {{ epreuve.get_session_display }}
+                </p>
+
+                <a
+                    href="{% url 'epreuves_details' epreuve.id %}"
+                    class="card-link"
+                >
+                    Voir l'épreuve →
+                </a>
+
+            </article>
+
+        {% empty %}
+
+            <p class="empty-message">
+                Aucune épreuve disponible pour le moment.
+            </p>
+
+        {% endfor %}
+
     </div>
 
 </section>

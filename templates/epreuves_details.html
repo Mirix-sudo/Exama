@@ -1,40 +1,82 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block title %}
-Détail de l'épreuve - Exama
+{{ epreuve.matiere }} - Exama
 {% endblock title %}
+
 
 {% block content %}
 
-<h1>{{ epreuve.matiere }}</h1>
+<div class="detail-page">
 
-<p>
-    <strong>Matière :</strong> {{ epreuve.matiere }}
-</p>
+    <a href="{% url 'epreuves' %}" class="back-link">
+        ← Retour aux épreuves
+    </a>
 
-<p>
-    <strong>Année :</strong> {{ epreuve.annee }}
-</p>
 
-<p>
-    <strong>Niveau :</strong> {{ epreuve.get_niveau_display }}
-</p>
+    <article class="detail-card">
 
-<p>
-    Épreuve {{ epreuve.get_session_display }} de {{ epreuve.entite }}.
-</p>
+        <div class="detail-header">
 
-<br>
+            <span class="exam-badge">
+                {{ epreuve.annee }}
+            </span>
 
-<a href="{{ epreuve.fichier.url }}" download target="_blank" rel="noopener">
-    Télécharger le PDF
-</a>
+            <h1>
+                {{ epreuve.matiere }}
+            </h1>
 
-<br><br>
+            <p>
+                Épreuve {{ epreuve.get_session_display }}
+                de {{ epreuve.entite }}
+            </p>
 
-<a href="{% url 'epreuves' %}">
-    ← Retour aux épreuves
-</a>
+        </div>
+
+
+        <div class="detail-info">
+
+            <div>
+                <span>Matière</span>
+                <strong>{{ epreuve.matiere }}</strong>
+            </div>
+
+            <div>
+                <span>Année</span>
+                <strong>{{ epreuve.annee }}</strong>
+            </div>
+
+            <div>
+                <span>Niveau</span>
+                <strong>{{ epreuve.get_niveau_display }}</strong>
+            </div>
+
+            <div>
+                <span>Session</span>
+                <strong>{{ epreuve.get_session_display }}</strong>
+            </div>
+
+        </div>
+
+
+        <div class="download-area">
+
+            <p>
+                Cette épreuve est disponible au format PDF.
+            </p>
+
+            <a
+                href="{{ epreuve.fichier.url }}"
+                download
+                class="download-button"
+            >
+                Télécharger le PDF
+            </a>
+
+        </div>
+
+    </article>
+
+</div>
 
 {% endblock content %}
