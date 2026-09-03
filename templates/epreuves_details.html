@@ -7,33 +7,36 @@ Détail de l'épreuve - Exama
 
 {% block content %}
 
-<h1>Topologie de R</h1>
+<section class="modifier">
+    
+    <h1>{{ epreuve.matiere }}</h1>
 
-<p>
-    <strong>Matière :</strong> Mathématiques
-</p>
+    <p>
+        <strong>Matière :</strong> {{ epreuve.matiere }}
+    </p>
 
-<p>
-    <strong>Année :</strong> 2026
-</p>
+    <p>
+        <strong>Année :</strong> {{ epreuve.annee }}
+    </p>
 
-<p>
-    <strong>Type :</strong> LC
-</p>
+    <p>
+        <strong>Niveau :</strong> {{ epreuve.get_niveau_display }}
+    </p>
 
-<p>
-    Voici l'épreuve de mathématiques de LC 2026.
-</p>
+    <p>
+        Épreuve {{ epreuve.get_session_display }} de {{ epreuve.entite }}.
+    </p>
 
-<br>
+    <br>
 
-<a href="#">
-    Télécharger le PDF
-</a>
+    <a href="{{ epreuve.fichier.url }}" target="_blank" rel="noopener">
+        Télécharger le PDF
+    </a>
+</section>
 
 <br><br>
 
-<a href="/epreuves/">
+<a href="{% url 'epreuves' %}">
     ← Retour aux épreuves
 </a>
 
