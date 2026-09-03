@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import Epreuve
 from django.db.models import Q
 from django.http import JsonResponse
@@ -8,13 +9,13 @@ def home(request):
     return render(request, "home.html", {'epreuves_recentes': epreuves_recentes})
 
 
-def epreuve(request):
+def epreuves(request):
     epreuves=Epreuve.objects.all()
 
-    #Recherche mot par mot-clé(titre, matire,et anné si un nom est taper)
+    # Recherche par matière ou année.
     terme =request.GET.get('q','').strip()
     if terme:
-        filtre = Q(titre__icontains=terme) | Q(matiere__nom__icontains=terme)
+        filtre = Q(matiere__nom__icontains=terme)
         if terme.isdigit(): 
             filtre |= Q(annee=int(terme))
         epreuves = epreuves.filter(filtre)
@@ -23,8 +24,6 @@ def epreuve(request):
     matiere = request.GET.get('matiere')
     niveau = request.GET.get('niveau')
     annee = request.GET.get('annee')
-    type_examen = request.GET.get('type_examen')
-    section = request.GET.get('section')
     entite = request.GET.get('entite')
 
     if matiere:
@@ -33,10 +32,6 @@ def epreuve(request):
         epreuves=epreuves.filter(niveau=niveau)
     if annee:
         epreuves=epreuves.filter(annee=annee)
-    if type_examen:
-        epreuves=epreuves.filter(type_examen=type_examen)
-    if section:
-        epreuves=epreuves.filter(section=section)
     if entite:
         epreuves=epreuves.filter(entite=entite)
 
@@ -48,7 +43,7 @@ def recherche_ajax(request):
     if len(terme) < 2:
         return JsonResponse({'resultats':[]})
     
-    filtre = Q(titre__icontains=terme) | Q(matiere__nom__icontains=terme)
+    filtre = Q(matiere__nom__icontains=terme)
     if terme.isdigit():
         filtre |= Q(annee=int(terme))
 
@@ -56,7 +51,6 @@ def recherche_ajax(request):
 
     data = [
         {'id': e.id,
-        'titre': e.titre,
         'matiere': str(e.matiere),
         'niveau': e.niveau,
         'annee': e.annee,
@@ -66,12 +60,14 @@ def recherche_ajax(request):
     ]
     return JsonResponse({'resultats': data})
 
+from django.shortcuts import get_object_or_404
 
-def detail(request):
-    return render(request, "epreuves_details.html")
+def epreuves_details(request, id):
+    epreuve = get_object_or_404(Epreuve, id=id)
+    return render(request, "epreuves_details.html", {
+        "epreuve": epreuve,
+    })
 
-def epreuves(request):
-    return render(request, 'epreuves.html')
-def epreuves_details(request):
-    return render(request, 'epreuves_details.html')
+# URL pattern for the details view
+# path("epreuves/<int:id>/", views.epreuves_details, name="epreuves_details")
 

@@ -32,62 +32,25 @@
         <option value="2021">2023</option>
     </select>
 
-    <button type="submit">Filtrer</button>
-
     <button class="filtrer" type="submit">Filtrer</button>
 
 </form>
 
 
-<!-- Exemple d'épreuve -->
+{% for epreuve in epreuves %}
 <div>
-    <h2>Topologie de R</h2>
+    <h2>{{ epreuve.matiere }}</h2>
+    <p>Année : {{ epreuve.annee }}</p>
+    <p>Niveau : {{ epreuve.get_niveau_display }}</p>
+    <p>Session : {{ epreuve.get_session_display }}</p>
 
-    <p>Matière : Mathématiques</p>
-    <p>Année : 2026</p>
-    <p>Type : LC</p>
-
-    <a href="/epreuves/1/">
+    <a href="{% url 'epreuves_details' epreuve.id %}">
         Voir l'épreuve
     </a>
 </div>
-
-
-<div>
-    <h2>Algèbres</h2>
-
-    <p>Matière : Mathématiques</p>
-    <p>Année : 2026</p>
-    <p>Type : LC</p>
-
-    <a href="/epreuves/2/">
-        Voir l'épreuve
-    </a>
-</div>
-
-<div>
-    <h2>Mecaniques</h2>
-
-    <p>Matière : Physiques</p>
-    <p>Année : 2026</p>
-    <p>Type : LC</p>
-
-    <a href="/epreuves/3/">
-        Voir l'épreuve
-    </a>
-</div>
-
-<div>
-    <h2>Fonctions en R</h2>
-
-    <p>Matière : Mathématiques</p>
-    <p>Année : 2026</p>
-    <p>Type : LC</p>
-
-    <a href="/epreuves/4/">
-        Voir l'épreuve
-    </a>
-</div>
+{% empty %}
+<p>Aucune épreuve trouvée.</p>
+{% endfor %}
 
 
 {% endblock content %}
