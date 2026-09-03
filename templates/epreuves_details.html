@@ -1,43 +1,122 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block title %}
-Détail de l'épreuve - Exama
+{{ epreuve.matiere }} - Exama
 {% endblock title %}
 
 {% block content %}
 
-<section class="modifier">
-    
-    <h1>{{ epreuve.matiere }}</h1>
+<div class="detail-page">
 
-    <p>
-        <strong>Matière :</strong> {{ epreuve.matiere }}
-    </p>
-
-    <p>
-        <strong>Année :</strong> {{ epreuve.annee }}
-    </p>
-
-    <p>
-        <strong>Niveau :</strong> {{ epreuve.get_niveau_display }}
-    </p>
-
-    <p>
-        Épreuve {{ epreuve.get_session_display }} de {{ epreuve.entite }}.
-    </p>
-
-    <br>
-
-    <a href="{{ epreuve.fichier.url }}" target="_blank" rel="noopener">
-        Télécharger le PDF
-    </a>
-</section>
-
-<br><br>
-
-<a href="{% url 'epreuves' %}">
+```
+<a href="{% url 'epreuves' %}" class="back-link">
     ← Retour aux épreuves
 </a>
+
+
+<section class="detail-card">
+
+    <div class="detail-header">
+
+        <p class="section-label">
+            DÉTAIL DE L'ÉPREUVE
+        </p>
+
+        <div class="detail-badges">
+
+            <span class="exam-badge">
+                {{ epreuve.annee }}
+            </span>
+
+            <span class="detail-level">
+                {{ epreuve.get_niveau_display }}
+            </span>
+
+        </div>
+
+        <h1>
+            {{ epreuve.matiere }}
+        </h1>
+
+        <p class="detail-description">
+            Épreuve {{ epreuve.get_session_display }}
+            de {{ epreuve.entite }}.
+        </p>
+
+    </div>
+
+
+    <div class="detail-info">
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Matière
+            </span>
+
+            <strong>
+                {{ epreuve.matiere }}
+            </strong>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Année
+            </span>
+
+            <strong>
+                {{ epreuve.annee }}
+            </strong>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Niveau
+            </span>
+
+            <strong>
+                {{ epreuve.get_niveau_display }}
+            </strong>
+
+        </div>
+
+
+        <div class="info-item">
+
+            <span class="info-label">
+                Session
+            </span>
+
+            <strong>
+                {{ epreuve.get_session_display }}
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="detail-actions">
+
+        <a
+            href="{{ epreuve.fichier.url }}"
+            class="download-button"
+            download
+        >
+            Télécharger le PDF
+        </a>
+
+    </div>
+
+</section>
+```
+
+</div>
 
 {% endblock content %}

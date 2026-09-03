@@ -4,182 +4,210 @@
 Épreuves - Exama
 {% endblock title %}
 
-
 {% block content %}
+
+<!-- ================= EN-TÊTE ================= -->
 
 <div class="page-header">
 
-    <p class="section-label">BIBLIOTHÈQUE</p>
+```
+<p class="section-label">
+    BIBLIOTHÈQUE
+</p>
 
-    <h1>Toutes les épreuves</h1>
+<h1>
+    Toutes les épreuves
+</h1>
 
-    <p>
-        Recherchez une épreuve par matière, niveau ou année.
-    </p>
+<p>
+    Recherchez une épreuve par matière, niveau ou année.
+</p>
+```
+
+</div>
+
+<!-- ================= FILTRES ================= -->
+
+<form method="get" class="filters">
+
+```
+<div class="filter-group">
+
+    <label for="matiere">
+        Matière
+    </label>
+
+    <select id="matiere" name="matiere">
+
+        <option value="">
+            Toutes les matières
+        </option>
+
+        {% for matiere in matieres %}
+
+            <option
+                value="{{ matiere.id }}"
+                {% if matiere.id|stringformat:'s' == matiere_recherchee %}
+                    selected
+                {% endif %}
+            >
+                {{ matiere.nom }}
+            </option>
+
+        {% endfor %}
+
+    </select>
 
 </div>
 
 
-<form method="get" class="filters">
+<div class="filter-group">
 
-    <div class="filter-group">
+    <label for="niveau">
+        Niveau
+    </label>
 
-        <label for="matiere">
-            Matière
-        </label>
+    <select id="niveau" name="niveau">
 
-        <select id="matiere" name="matiere">
+        <option value="">
+            Tous les niveaux
+        </option>
 
-            <option value="">
-                Toutes les matières
+        {% for value, label in niveaux %}
+
+            <option
+                value="{{ value }}"
+                {% if value == niveau_recherche %}
+                    selected
+                {% endif %}
+            >
+                {{ label }}
             </option>
 
-            {% for matiere in matieres %}
+        {% endfor %}
 
-                <option
-                    value="{{ matiere.id }}"
-                    {% if matiere.id|stringformat:'s' == matiere_recherchee %}
-                        selected
-                    {% endif %}
-                >
-                    {{ matiere.nom }}
-                </option>
+    </select>
 
-            {% endfor %}
-
-        </select>
-
-    </div>
+</div>
 
 
-    <div class="filter-group">
+<div class="filter-group">
 
-        <label for="niveau">
-            Niveau
-        </label>
+    <label for="annee">
+        Année
+    </label>
 
-        <select id="niveau" name="niveau">
+    <select id="annee" name="annee">
 
-            <option value="">
-                Tous les niveaux
+        <option value="">
+            Toutes les années
+        </option>
+
+        {% for annee in annees %}
+
+            <option
+                value="{{ annee }}"
+                {% if annee|stringformat:'s' == annee_recherchee %}
+                    selected
+                {% endif %}
+            >
+                {{ annee }}
             </option>
 
-            {% for value, label in niveaux %}
+        {% endfor %}
 
-                <option
-                    value="{{ value }}"
-                    {% if value == niveau_recherche %}
-                        selected
-                    {% endif %}
-                >
-                    {{ label }}
-                </option>
+    </select>
 
-            {% endfor %}
-
-        </select>
-
-    </div>
+</div>
 
 
-    <div class="filter-group">
-
-        <label for="annee">
-            Année
-        </label>
-
-        <select id="annee" name="annee">
-
-            <option value="">
-                Toutes les années
-            </option>
-
-            {% for annee in annees %}
-
-                <option
-                    value="{{ annee }}"
-                    {% if annee|stringformat:'s' == annee_recherchee %}
-                        selected
-                    {% endif %}
-                >
-                    {{ annee }}
-                </option>
-
-            {% endfor %}
-
-        </select>
-
-    </div>
-
-
-    <button type="submit" class="filter-button">
-        Filtrer
-    </button>
+<button type="submit" class="filter-button">
+    Filtrer
+</button>
+```
 
 </form>
 
+<!-- ================= RÉSULTATS ================= -->
 
 <div class="results-header">
+
+```
+<div>
+    <p class="section-label">
+        RÉSULTATS
+    </p>
 
     <h2>
         Épreuves disponibles
     </h2>
+</div>
 
-    <span>
-        {{ epreuves|length }} résultat(s)
-    </span>
+<span class="results-count">
+    {{ epreuves|length }} résultat(s)
+</span>
+```
 
 </div>
 
+<!-- ================= CARTES ================= -->
 
 <div class="exam-grid">
 
-    {% for epreuve in epreuves %}
+```
+{% for epreuve in epreuves %}
 
-        <article class="exam-card">
+    <article class="exam-card">
 
-            <div class="exam-card-top">
+        <div class="exam-card-top">
 
-                <span class="exam-badge">
-                    {{ epreuve.annee }}
-                </span>
+            <span class="exam-badge">
+                {{ epreuve.annee }}
+            </span>
 
-                <span>
-                    {{ epreuve.get_niveau_display }}
-                </span>
-
-            </div>
-
-            <h3>
-                {{ epreuve.matiere }}
-            </h3>
-
-            <p>
-                Session : {{ epreuve.get_session_display }}
-            </p>
-
-            <a
-                href="{% url 'epreuves_details' epreuve.id %}"
-                class="card-link"
-            >
-                Voir l'épreuve →
-            </a>
-
-        </article>
-
-    {% empty %}
-
-        <div class="empty-state">
-
-            <h3>Aucune épreuve trouvée</h3>
-
-            <p>
-                Essayez de modifier vos critères de recherche.
-            </p>
+            <span class="exam-level">
+                {{ epreuve.get_niveau_display }}
+            </span>
 
         </div>
 
-    {% endfor %}
+        <h3>
+            {{ epreuve.matiere }}
+        </h3>
+
+        <p>
+            Session : {{ epreuve.get_session_display }}
+        </p>
+
+        <a
+            href="{% url 'epreuves_details' epreuve.id %}"
+            class="card-link"
+        >
+            Voir l'épreuve →
+        </a>
+
+    </article>
+
+{% empty %}
+
+    <div class="empty-state">
+
+        <h3>
+            Aucune épreuve trouvée
+        </h3>
+
+        <p>
+            Essayez de modifier vos critères de recherche.
+        </p>
+
+        <a href="{% url 'epreuves' %}" class="secondary-button">
+            Réinitialiser les filtres
+        </a>
+
+    </div>
+
+{% endfor %}
+```
 
 </div>
 

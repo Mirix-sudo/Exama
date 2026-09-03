@@ -4,133 +4,150 @@
 Accueil - Exama
 {% endblock title %}
 
-
 {% block content %}
+
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
-    <div class="hero-content">
+```
+<div class="hero-content">
 
-        <p class="hero-label">
-            BANQUE D'ÉPREUVES
-        </p>
+    <p class="hero-label">
+        BANQUE D'ÉPREUVES
+    </p>
 
-        <h1>
-            Préparez vos examens<br>
-            avec <span>Exama</span>
-        </h1>
+    <h1>
+        Préparez vos examens
+        <span>avec Exama.</span>
+    </h1>
 
-        <p class="hero-description">
-            Retrouvez facilement des épreuves, exercices et anciens examens
-            pour mieux vous préparer.
-        </p>
+    <p class="hero-description">
+        Retrouvez facilement des épreuves et anciens examens
+        pour mieux vous préparer.
+    </p>
 
-        <a href="{% url 'epreuves' %}" class="primary-button">
-            Explorer les épreuves
-        </a>
+    <a href="{% url 'epreuves' %}" class="primary-button">
+        Explorer les épreuves
+    </a>
 
-    </div>
+</div>
+```
 
 </section>
 
+<!-- ================= MATIÈRES ================= -->
 
 <section class="subjects-section">
 
-    <div class="section-header">
-        <div>
-            <p class="section-label">EXPLORER</p>
-            <h2>Les matières</h2>
-        </div>
+```
+<div class="section-header">
+
+    <div>
+        <p class="section-label">EXPLORER</p>
+        <h2>Les matières</h2>
     </div>
 
-    <div class="subjects-grid">
+</div>
 
-        <a href="{% url 'epreuves' %}" class="subject-card">
-            <span>01</span>
-            <h3>Topologie de R</h3>
-        </a>
 
-        <a href="{% url 'epreuves' %}" class="subject-card">
-            <span>02</span>
-            <h3>Algèbres</h3>
-        </a>
+<div class="subjects-grid">
 
-        <a href="{% url 'epreuves' %}" class="subject-card">
-            <span>03</span>
-            <h3>Mécaniques</h3>
-        </a>
+    <a href="{% url 'epreuves' %}" class="subject-card">
+        <span>01</span>
+        <h3>Topologie de R</h3>
+    </a>
 
-        <a href="{% url 'epreuves' %}" class="subject-card">
-            <span>04</span>
-            <h3>Fonctions en R</h3>
-        </a>
+    <a href="{% url 'epreuves' %}" class="subject-card">
+        <span>02</span>
+        <h3>Algèbres</h3>
+    </a>
 
-        <a href="{% url 'epreuves' %}" class="subject-card">
-            <span>05</span>
-            <h3>Anglais scientifique</h3>
-        </a>
+    <a href="{% url 'epreuves' %}" class="subject-card">
+        <span>03</span>
+        <h3>Mécaniques</h3>
+    </a>
 
-    </div>
+    <a href="{% url 'epreuves' %}" class="subject-card">
+        <span>04</span>
+        <h3>Fonctions en R</h3>
+    </a>
+
+    <a href="{% url 'epreuves' %}" class="subject-card">
+        <span>05</span>
+        <h3>Anglais scientifique</h3>
+    </a>
+
+</div>
+```
 
 </section>
 
+<!-- ================= ÉPREUVES RÉCENTES ================= -->
 
 <section class="recent-section">
 
-    <div class="section-header">
+```
+<div class="section-header">
 
-        <div>
-            <p class="section-label">NOUVEAUTÉS</p>
-            <h2>Épreuves récentes</h2>
-        </div>
-
-        <a href="{% url 'epreuves' %}">
-            Voir toutes →
-        </a>
-
+    <div>
+        <p class="section-label">NOUVEAUTÉS</p>
+        <h2>Épreuves récentes</h2>
     </div>
 
+    <a href="{% url 'epreuves' %}" class="see-all">
+        Voir toutes →
+    </a>
 
-    <div class="exam-grid">
+</div>
 
-        {% for epreuve in epreuves_recentes %}
 
-            <article class="exam-card">
+<div class="exam-grid">
 
-                <div class="exam-card-top">
-                    <span class="exam-badge">
-                        {{ epreuve.annee }}
-                    </span>
-                </div>
+    {% for epreuve in epreuves_recentes %}
 
-                <h3>
-                    {{ epreuve.matiere }}
-                </h3>
+        <article class="exam-card">
 
-                <p>
+            <div class="exam-card-top">
+
+                <span class="exam-badge">
+                    {{ epreuve.annee }}
+                </span>
+
+                <span class="exam-level">
                     {{ epreuve.get_niveau_display }}
-                    ·
-                    {{ epreuve.get_session_display }}
-                </p>
+                </span>
 
-                <a
-                    href="{% url 'epreuves_details' epreuve.id %}"
-                    class="card-link"
-                >
-                    Voir l'épreuve →
-                </a>
+            </div>
 
-            </article>
+            <h3>
+                {{ epreuve.matiere }}
+            </h3>
 
-        {% empty %}
-
-            <p class="empty-message">
-                Aucune épreuve disponible pour le moment.
+            <p>
+                Session : {{ epreuve.get_session_display }}
             </p>
 
-        {% endfor %}
+            <a
+                href="{% url 'epreuves_details' epreuve.id %}"
+                class="card-link"
+            >
+                Voir l'épreuve →
+            </a>
 
-    </div>
+        </article>
+
+    {% empty %}
+
+        <div class="empty-state">
+            <h3>Aucune épreuve disponible</h3>
+            <p>Les nouvelles épreuves apparaîtront ici.</p>
+        </div>
+
+    {% endfor %}
+
+</div>
+```
 
 </section>
 
