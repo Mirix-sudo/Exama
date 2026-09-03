@@ -1,8 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Épreuves - Exama
-{% endblock %}
+{% endblock title %}
 
 {% block content %}
 
@@ -51,15 +52,40 @@
 
 
 <div>
-    <h2>Physique - Bac 2024</h2>
+    <h2>Algèbres</h2>
 
-    <p>Matière : Physique</p>
-    <p>Année : 2024</p>
-    <p>Type : BAC</p>
+    <p>Matière : Mathématiques</p>
+    <p>Année : 2026</p>
+    <p>Type : LC</p>
 
     <a href="/epreuves/2/">
         Voir l'épreuve
     </a>
 </div>
 
-{% endblock %}
+<div>
+    <h2>Mecaniques</h2>
+
+    <p>Matière : Physiques</p>
+    <p>Année : 2026</p>
+    <p>Type : LC</p>
+
+    <a href="/epreuves/3/">
+        Voir l'épreuve
+    </a>
+</div>
+
+<div>
+    <h2>Fonctions en R</h2>
+
+    <p>Matière : Mathématiques</p>
+    <p>Année : 2026</p>
+    <p>Type : LC</p>
+
+    <a href="/epreuves/4/">
+        Voir l'épreuve
+    </a>
+</div>
+
+
+{% endblock content %}
