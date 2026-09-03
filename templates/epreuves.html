@@ -16,7 +16,7 @@
     <select id="matiere" name="matiere">
         <option value="">Toutes</option>
         {% for matiere in matieres %}
-        <option value="{{ matiere.nom }}"{% if matiere.nom == matiere_recherchee %} selected{% endif %}>{{ matiere.nom }}</option>
+        <option value="{{ matiere.id }}"{% if matiere.id|stringformat:'s' == matiere_recherchee %} selected{% endif %}>{{ matiere.nom }}</option>
         {% endfor %}
     </select>
 
@@ -40,9 +40,6 @@
     <p>Niveau : {{ epreuve.get_niveau_display }}</p>
     <p>Session : {{ epreuve.get_session_display }}</p>
 
-    <a href="{{ epreuve.fichier.url }}" target="_blank" rel="noopener">
-        Télécharger le fichier
-    </a>
 
     <a href="{% url 'epreuves_details' epreuve.id %}">
         Voir l'épreuve

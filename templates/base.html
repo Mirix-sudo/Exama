@@ -25,11 +25,11 @@
         <div class="menu">
             <a href="/">Accueil</a>
             <a href="/epreuves/">Épreuves</a>
-            <a href="/recherche/">Recherche</a>
+            <a href="{% url 'epreuves' %}">Recherche</a>
         </div>
 
         <!-- Barre de recherche simple -->
-        <form action="/recherche/" method="get">
+        <form action="{% url 'epreuves' %}" method="get">
             <input
                 type="text"
                 name="q"
