@@ -12,24 +12,20 @@
 <!-- Filtres -->
 <form method="get">
 
-    <label>Matière :</label>
-    <select name="matiere">
+    <label for="matiere">Matière :</label>
+    <select id="matiere" name="matiere">
         <option value="">Toutes</option>
-        <option value="top">Topologie de R</option>
-        <option value="alg">Algèbres </option>
-        <option value="meca">Mecaniques</option>
-        <option value="fonc">Fonctions en R</option>
-        <option value="ang">Anglais Scientifiques</option>
+        {% for matiere in matieres %}
+        <option value="{{ matiere.nom }}"{% if matiere.nom == matiere_recherchee %} selected{% endif %}>{{ matiere.nom }}</option>
+        {% endfor %}
     </select>
 
-    <label>Année :</label>
-    <select name="annee">
+    <label for="annee">Année :</label>
+    <select id="annee" name="annee">
         <option value="">Toutes</option>
-        <option value="2025">2026</option>
-        <option value="2024">2026</option>
-        <option value="2023">2025</option>
-        <option value="2022">2024</option>
-        <option value="2021">2023</option>
+        {% for annee in annees %}
+        <option value="{{ annee }}"{% if annee|stringformat:'s' == annee_recherchee %} selected{% endif %}>{{ annee }}</option>
+        {% endfor %}
     </select>
 
     <button class="filtrer" type="submit">Filtrer</button>
@@ -43,6 +39,10 @@
     <p>Année : {{ epreuve.annee }}</p>
     <p>Niveau : {{ epreuve.get_niveau_display }}</p>
     <p>Session : {{ epreuve.get_session_display }}</p>
+
+    <a href="{{ epreuve.fichier.url }}" target="_blank" rel="noopener">
+        Télécharger le fichier
+    </a>
 
     <a href="{% url 'epreuves_details' epreuve.id %}">
         Voir l'épreuve

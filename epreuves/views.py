@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from .models import Epreuve
+from .models import Epreuve, Matiere
 from django.db.models import Q
-from django.http import JsonResponse
 
 def home(request):
     epreuves_recentes = Epreuve.objects.order_by('-date_ajout')[:3]
@@ -21,9 +20,9 @@ def epreuves(request):
         epreuves = epreuves.filter(filtre)
 
         #filtrer
-    matiere = request.GET.get('matiere')
+    matiere = request.GET.get('matiere', '').strip()
     niveau = request.GET.get('niveau')
-    annee = request.GET.get('annee')
+    annee = request.GET.get('annee', '').strip()
     entite = request.GET.get('entite')
 
     if matiere:
@@ -35,32 +34,16 @@ def epreuves(request):
     if entite:
         epreuves=epreuves.filter(entite=entite)
 
-    return render(request, 'epreuves.html',{'epreuves':epreuves,'terme_rechercher':terme})
+    return render(request, 'epreuves.html', {
+        'epreuves': epreuves,
+        'terme_rechercher': terme,
+        'matiere_recherchee': matiere,
+        'annee_recherchee': annee,
+        'matieres': Matiere.objects.order_by('nom'),
+        'annees': Epreuve.objects.order_by('-annee').values_list('annee', flat=True).distinct(),
+    })
 
-def recherche_ajax(request):
-    terme = request.GET.get('q','')
 
-    if len(terme) < 2:
-        return JsonResponse({'resultats':[]})
-    
-    filtre = Q(matiere__nom__icontains=terme)
-    if terme.isdigit():
-        filtre |= Q(annee=int(terme))
-
-    epreuves = Epreuve.objects.filter(filtre)[:6]
-
-    data = [
-        {'id': e.id,
-        'matiere': str(e.matiere),
-        'niveau': e.niveau,
-        'annee': e.annee,
-        'url': f'/epreuves/{e.id}/'
-        }
-        for e in epreuves
-    ]
-    return JsonResponse({'resultats': data})
-
-from django.shortcuts import get_object_or_404
 
 def epreuves_details(request, id):
     epreuve = get_object_or_404(Epreuve, id=id)
