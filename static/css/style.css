@@ -199,6 +199,8 @@ p {
 button,
 section a {
     display: inline-block;
+    background-color: #2563eb;
+    color: #ffffff;
 }
 
 section > a {
@@ -303,6 +305,21 @@ select:focus {
     outline: none;
 }
 
+.filtrer {
+    padding: 10px 15px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #2563eb;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s;
+}
 
 /* =========================================
    DOWNLOAD BUTTON
