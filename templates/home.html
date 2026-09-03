@@ -2,7 +2,7 @@
 
 {% block title %}
 Accueil - Exama
-{% endblock %}
+{% endblock title %}
 
 {% block content %}
 
@@ -22,11 +22,12 @@ Accueil - Exama
 <section>
     <h2>Matières</h2>
 
-    <div>
-        <button>Mathématiques</button>
-        <button>Français</button>
-        <button>Physique</button>
-        <button>Anglais</button>
+    <div> 
+        <button>Topologie de R</button>
+        <button>Algèbres</button>
+        <button>Mécaniques</button>
+        <button>Fonctions en R</button>
+        <button>Anglais Scientifiques</button>
     </div>
 </section>
 
@@ -35,16 +36,17 @@ Accueil - Exama
     <h2>Épreuves récentes</h2>
 
     <div>
-        <h3>Mathématiques - Bac 2025</h3>
-        <p>Épreuve de mathématiques du BAC.</p>
+        <h3>Algèbres</h3>
+        <p>Épreuve de mathématiques de 2026.</p>
         <a href="/epreuves/1/">Voir l'épreuve</a>
     </div>
 
     <div>
-        <h3>Physique - Bac 2024</h3>
-        <p>Épreuve de physique du BAC.</p>
+        <h3>Anglais Scientifiques</h3>
+        <p>Épreuve d'anglais scientifique de 2026.</p>
         <a href="/epreuves/2/">Voir l'épreuve</a>
     </div>
+
 </section>
 
-{% endblock %}
+{% endblock content %}
