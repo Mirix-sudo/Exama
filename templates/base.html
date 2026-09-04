@@ -7,19 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>{% block title %}Exama{% endblock title %}</title>
-
+    <link rel="icon" type="image/png" href="{% static 'images/favic.png' %}?v=2">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favic.png' %}?v=2">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
 <body>
 
     <header class="site-header">
-        <nav class="navbar">
-
-            <a href="{% url 'home' %}" class="logo">
-                Exama
-            </a>
-
+        <nav class="navbar" style="position: relative;">
+            <div class="logo-container" style="display: flex; align-items: center;">
+                <img src="{% static 'images/favic.png' %}" alt="Logo Exama" class="logo-image" style="width: 40px; height: 35px; margin-right: 10px;">
+                <a href="{% url 'home' %}" class="logo" >Exama</a>
+            </div>
             <div class="nav-links">
                 <a href="{% url 'home' %}">Accueil</a>
                 <a href="{% url 'epreuves' %}">Épreuves</a>

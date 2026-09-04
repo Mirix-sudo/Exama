@@ -41,6 +41,9 @@ select {
 .site-header {
     background: #ffffff;
     border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .navbar {
@@ -51,7 +54,8 @@ select {
 
     display: flex;
     align-items: center;
-    gap: 35px;
+    justify-content: space-between;
+    gap: 50px;
 }
 
 

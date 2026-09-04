@@ -4,6 +4,7 @@ from django.utils import choices
 
 
 class Epreuve(models.Model):
+    ANNEE = [(year, f"{year}-{year + 1}") for year in range(2000, 2026)]
     ENTITES = [
        ("FAST", "FAST"),
        ("ENS", "ENS"),
@@ -19,7 +20,7 @@ class Epreuve(models.Model):
     ]
     entite = models.CharField(max_length=100, default=ENTITES[0][0], choices=ENTITES)
     niveau = models.CharField(max_length=100, default="Choisissez votre niveau", choices=NIVEAUX)
-    annee = models.IntegerField()
+    annee = models.IntegerField(choices=ANNEE)
     session = models.CharField(max_length=100, default="Quel est la session?" ,choices=SESSION)
     fichier = models.FileField(upload_to='epreuves/')
     matiere = models.ForeignKey('Matiere', on_delete=models.CASCADE, related_name='epreuves')
@@ -27,7 +28,7 @@ class Epreuve(models.Model):
     
 
     def __str__(self):
-        return f"{self.entite} - {self.matiere} - {self.niveau} - {self.annee} - {self.session}"
+        return f"{self.entite} - {self.matiere} - {self.niveau} - {self.annee}-{self.annee + 1} - {self.session}"
 
 class Matiere(models.Model):
     nom = models.CharField(max_length=100)
