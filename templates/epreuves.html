@@ -97,12 +97,12 @@
             {% for annee in annees %}
 
                 <option
-                    value="{{ annee }}"
+                    value="{{ annee|stringformat:'s' }}"
                     {% if annee|stringformat:'s' == annee_recherchee %}
                         selected
                     {% endif %}
                 >
-                    {{ annee }}
+                    {{ annee }}-{{ annee|add:1 }}
                 </option>
 
             {% endfor %}
@@ -141,7 +141,7 @@
             <div class="exam-card-top">
 
                 <span class="exam-badge">
-                    {{ epreuve.annee }}
+                    {{ epreuve.get_annee_display }}
                 </span>
 
                 <span>
