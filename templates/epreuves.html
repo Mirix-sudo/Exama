@@ -22,6 +22,8 @@
 
 <form method="get" class="filters">
 
+    <input type="hidden" name="q" value="{{ recherche }}">
+
     <div class="filter-group">
 
         <label for="matiere">
@@ -69,6 +71,36 @@
                 <option
                     value="{{ value }}"
                     {% if value == niveau_recherche %}
+                        selected
+                    {% endif %}
+                >
+                    {{ label }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+
+    <div class="filter-group">
+
+        <label for="session">
+            Session
+        </label>
+
+        <select id="session" name="session">
+
+            <option value="">
+                Toutes les sessions
+            </option>
+
+            {% for value, label in sessions %}
+
+                <option
+                    value="{{ value }}"
+                    {% if value == session_recherchee %}
                         selected
                     {% endif %}
                 >

@@ -69,14 +69,41 @@
                 href="{{ epreuve.fichier.url }}"
                 download
                 class="download-button"
+                id="download-button"
             >
                 Télécharger le PDF
             </a>
+
+            <p
+                class="download-notification"
+                id="download-notification"
+                role="status"
+                aria-live="polite"
+                hidden
+            ></p>
 
         </div>
 
     </article>
 
 </div>
+
+<script>
+    const downloadButton = document.getElementById("download-button");
+    const downloadNotification = document.getElementById("download-notification");
+
+    downloadButton.addEventListener("click", () => {
+        downloadNotification.textContent = "Téléchargement en cours...";
+        downloadNotification.hidden = false;
+
+        window.setTimeout(() => {
+            downloadNotification.textContent = "Téléchargement terminé!";
+
+            window.setTimeout(() => {
+                downloadNotification.hidden = true;
+            }, 2000);
+        }, 3000);
+    });
+</script>
 
 {% endblock content %}

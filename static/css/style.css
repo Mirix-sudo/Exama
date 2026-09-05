@@ -80,6 +80,7 @@ select {
     color: #64748b;
     font-size: 15px;
     font-weight: 600;
+    font-weight: bold;
 }
 
 .nav-links a:hover {
@@ -575,6 +576,16 @@ select {
 
 .download-button:hover {
     background: #15803d;
+}
+
+.download-notification {
+    margin: 14px 0 0;
+    color: #166534;
+    font-weight: 700;
+}
+
+.download-notification[hidden] {
+    display: none;
 }
 
 

@@ -1,7 +1,17 @@
+import unicodedata
+
 from django.shortcuts import render, get_object_or_404
-from django.db.models import Q
 
 from .models import Epreuve, Matiere
+
+
+def _normaliser_recherche(valeur):
+    valeur = unicodedata.normalize("NFKD", str(valeur))
+    return "".join(
+        caractere
+        for caractere in valeur
+        if not unicodedata.combining(caractere)
+    ).casefold()
 
 
 def home(request):
@@ -21,22 +31,11 @@ def liste_epreuves(request):
 
     epreuves = Epreuve.objects.select_related("matiere")
 
-    # Recherche
-    recherche = request.GET.get("q", "").strip()
-
-    if recherche:
-
-        filtre = Q(matiere__nom__icontains=recherche)
-
-        if recherche.isdigit():
-            filtre |= Q(annee=int(recherche))
-
-        epreuves = epreuves.filter(filtre)
-
-
     # Filtres
+    recherche = request.GET.get("q", "").strip()
     matiere = request.GET.get("matiere", "").strip()
     niveau = request.GET.get("niveau", "").strip()
+    session = request.GET.get("session", "").strip()
     annee = request.GET.get("annee", "").strip()
     entite = request.GET.get("entite", "").strip()
 
@@ -47,11 +46,32 @@ def liste_epreuves(request):
     if niveau:
         epreuves = epreuves.filter(niveau=niveau)
 
+    if session:
+        epreuves = epreuves.filter(session=session)
+
     if annee:
         epreuves = epreuves.filter(annee=annee)
 
     if entite:
         epreuves = epreuves.filter(entite=entite)
+
+    if recherche:
+        terme = _normaliser_recherche(recherche)
+        epreuves = [
+            epreuve
+            for epreuve in epreuves
+            if any(
+                terme in _normaliser_recherche(valeur)
+                for valeur in (
+                    epreuve.matiere.nom,
+                    epreuve.get_niveau_display(),
+                    epreuve.get_session_display(),
+                    epreuve.entite,
+                    epreuve.get_entite_display(),
+                    str(epreuve.annee),
+                )
+            )
+        ]
 
 
     return render(request, "epreuves.html", {
@@ -69,11 +89,15 @@ def liste_epreuves(request):
 
         "niveaux": Epreuve.NIVEAUX,
 
+        "sessions": Epreuve.SESSION,
+
         "recherche": recherche,
 
         "matiere_recherchee": matiere,
 
         "niveau_recherche": niveau,
+
+        "session_recherchee": session,
 
         "annee_recherchee": annee,
 
