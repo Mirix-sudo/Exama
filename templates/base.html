@@ -9,6 +9,7 @@
     <title>{% block title %}Exama{% endblock title %}</title>
     <link rel="icon" type="image/png" href="{% static 'images/favic.png' %}?v=2">
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favic.png' %}?v=2">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
         .navbar .nav-links {
@@ -71,6 +72,9 @@
     <footer class="footer">
         <p>&copy; 2026 Exama · Banque d'épreuves</p>
     </footer>
-
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>
