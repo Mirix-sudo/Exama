@@ -1,6 +1,7 @@
 import unicodedata
 
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect, render, get_object_or_404
 
 from .models import Epreuve, Matiere
 
@@ -114,3 +115,35 @@ def epreuves_details(request, id):
     return render(request, "epreuves_details.html", {
         "epreuve": epreuve,
     })
+
+
+def login_view(request):
+
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    erreur = None
+
+    if request.method == "POST":
+        username = request.POST.get("username", "").strip()
+        password = request.POST.get("password", "")
+        utilisateur = authenticate(
+            request,
+            username=username,
+            password=password,
+        )
+
+        if utilisateur is not None:
+            login(request, utilisateur)
+            return redirect("home")
+
+        erreur = "Nom d'utilisateur ou mot de passe incorrect."
+
+    return render(request, "login.html", {"erreur": erreur})
+
+
+def logout_view(request):
+    if request.method == "POST":
+        logout(request)
+
+    return redirect("login")

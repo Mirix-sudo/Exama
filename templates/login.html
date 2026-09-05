@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}
+Connexion - Exama
+{% endblock title %}
+
+{% block content %}
+<div class="login-page">
+    <section class="login-card" aria-labelledby="login-title">
+        <p class="section-label">EXAMA</p>
+        <h1 id="login-title">Connexion</h1>
+        <p class="login-intro">Connectez-vous à votre compte Exama.</p>
+
+        {% if erreur %}
+            <p class="login-error" role="alert">{{ erreur }}</p>
+        {% endif %}
+
+        <form method="post" class="login-form">
+            {% csrf_token %}
+
+            <div class="login-field">
+                <label for="username">Nom d'utilisateur</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
+                    required
+                    autofocus
+                >
+            </div>
+
+            <div class="login-field">
+                <label for="password">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    autocomplete="current-password"
+                    required
+                >
+            </div>
+
+            <button type="submit" class="login-button">Se connecter</button>
+        </form>
+
+        <a href="{% url 'home' %}" class="login-home-link">Retour à l'accueil</a>
+    </section>
+</div>
+{% endblock content %}
