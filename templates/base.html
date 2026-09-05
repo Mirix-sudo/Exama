@@ -13,16 +13,13 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <style>
         .navbar .nav-links {
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
+            margin-left: auto;
             white-space: nowrap;
         }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 600px) {
             .navbar .nav-links {
-                position: static;
-                transform: none;
+                margin-left: 0;
                 justify-content: center;
                 width: 100%;
             }
@@ -51,22 +48,7 @@
                 {% endif %}
             </div>
 
-            <form
-                action="{% url 'epreuves' %}"
-                method="get"
-                class="search-form"
-            >
-                <input
-                    type="search"
-                    name="q"
-                    placeholder="Rechercher une épreuve..."
-                    value="{{ recherche }}"
-                >
-
-                <button type="submit">
-                    Rechercher
-                </button>
-            </form>
+            
 
         </nav>
     </header>
