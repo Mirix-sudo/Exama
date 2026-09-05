@@ -9,7 +9,25 @@
     <title>{% block title %}Exama{% endblock title %}</title>
     <link rel="icon" type="image/png" href="{% static 'images/favic.png' %}?v=2">
     <link rel="shortcut icon" type="image/png" href="{% static 'images/favic.png' %}?v=2">
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .navbar .nav-links {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
+        @media (max-width: 1024px) {
+            .navbar .nav-links {
+                position: static;
+                transform: none;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -17,7 +35,6 @@
     <header class="site-header">
         <nav class="navbar" style="position: relative;">
             <div class="logo-container" style="display: flex; align-items: center;">
-                <img src="{% static 'images/favic.png' %}" alt="Logo Exama" class="logo-image" style="width: 40px; height: 35px; margin-right: 10px;">
                 <a href="{% url 'home' %}" class="logo" >Exama</a>
             </div>
             <div class="nav-links">
@@ -55,6 +72,9 @@
     <footer class="footer">
         <p>&copy; 2026 Exama · Banque d'épreuves</p>
     </footer>
-
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
 </body>
 </html>

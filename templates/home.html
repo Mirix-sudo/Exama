@@ -91,7 +91,7 @@ Accueil - Exama
     </div>
 
 
-    <div class="exam-grid">
+    <div class="exam-grid"  data-aos="fade-up">
 
         {% for epreuve in epreuves_recentes %}
 
@@ -99,7 +99,7 @@ Accueil - Exama
 
                 <div class="exam-card-top">
                     <span class="exam-badge">
-                        {{ epreuve.annee }}
+                        {{ epreuve.annee }}-{{ epreuve.annee|add:1 }}
                     </span>
                 </div>
 
